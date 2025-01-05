@@ -9,7 +9,7 @@ then
 else
 	xhost +
 	SHARED_DOCKER_DIR=/root/graph1/shared_dir
-	SHARED_HOST_DIR=$HOME/shared_dir
+	SHARED_HOST_DIR=$HOME/GraphGNSSLib
 	if [ ! -d "$SHARED_HOST_DIR" ];then
 	    mkdir $SHARED_HOST_DIR
 	fi
