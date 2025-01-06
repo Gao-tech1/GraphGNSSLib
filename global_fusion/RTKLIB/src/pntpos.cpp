@@ -24,7 +24,7 @@
 // google eigen
 #include <Eigen/Eigen>
 #include <Eigen/Dense>
-#include<Eigen/Core>
+#include <Eigen/Core>
 
 #include <ceres/ceres.h>
 #include <ceres/rotation.h>
@@ -53,7 +53,7 @@ FILE* gnss_ublox_wls = fopen("gnss_ublox_wls.csv", "w+");
 static const char rcsid[]="$Id:$";
 
 /* constants -----------------------------------------------------------------*/
-
+#define NFREQ       3           /* number of carrier frequencies */
 #define SQR(x)      ((x)*(x))
 
 #define NX          (4+3)       /* # of estimated parameters */

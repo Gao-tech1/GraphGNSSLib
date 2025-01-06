@@ -6,8 +6,8 @@ float64 raw_pseudorange
 float64 carrier_phase
 float64 lamda
 float64 snr
-float64 elevation
-float64 azimuth
+float64 elevation #degree
+float64 azimuth  #degree
 float64 err_tropo
 float64 err_iono
 float64 sat_clk_err

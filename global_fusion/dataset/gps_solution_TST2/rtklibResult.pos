@@ -1,8 +1,8 @@
 % program   : RTKLIB ver.2.4.2
-% inp file  : /home/wws/GraphGNSSLib/src/GraphGNSSLib/global_fusion/dataset/gps_solution_TST2/2020_06_03_TST_03.obs
-% inp file  : /home/wws/GraphGNSSLib/src/GraphGNSSLib/global_fusion/dataset/gps_solution_TST2/hksc155d.20o
-% inp file  : /home/wws/GraphGNSSLib/src/GraphGNSSLib/global_fusion/dataset/gps_solution_TST2/hksc155d.20b
-% inp file  : /home/wws/GraphGNSSLib/src/GraphGNSSLib/global_fusion/dataset/gps_solution_TST2/hksc155d.20n
+% inp file  : /home/gao-yixin/GraphGNSSLib/src/GraphGNSSLib/global_fusion/dataset/gps_solution_TST2/2020_06_03_TST_03.obs
+% inp file  : /home/gao-yixin/GraphGNSSLib/src/GraphGNSSLib/global_fusion/dataset/gps_solution_TST2/hksc155d.20o
+% inp file  : /home/gao-yixin/GraphGNSSLib/src/GraphGNSSLib/global_fusion/dataset/gps_solution_TST2/hksc155d.20b
+% inp file  : /home/gao-yixin/GraphGNSSLib/src/GraphGNSSLib/global_fusion/dataset/gps_solution_TST2/hksc155d.20n
 % obs start : 2020/06/03 03:02:27.0 GPST (week2108 270147.0s)
 % obs end   : 2020/06/03 03:18:52.0 GPST (week2108 271132.0s)
 % pos mode  : kinematic

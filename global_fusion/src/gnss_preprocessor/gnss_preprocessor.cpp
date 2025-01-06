@@ -98,10 +98,13 @@ int main(int argc, char **argv)
 
 	/* if you use the RTK mode, specify the position of the station (only used by RTKLIB)
 	 * following is an example position of the base HKSC in Hong Kong */
-	prcopt.rb[0] = -2414266.9197;			// base position for relative mode {x,y,z} (ecef) (m)
-	prcopt.rb[1] = 5386768.9868;			// base position for relative mode {x,y,z} (ecef) (m)
-	prcopt.rb[2] = 2407460.0314;			// base position for relative mode {x,y,z} (ecef) (m)
-
+	// prcopt.rb[0] = -2414266.9197;			// base position for relative mode {x,y,z} (ecef) (m)
+	// prcopt.rb[1] = 5386768.9868;			// base position for relative mode {x,y,z} (ecef) (m)
+	// prcopt.rb[2] = 2407460.0314;			// base position for relative mode {x,y,z} (ecef) (m)
+	//  * following is an example position of the base HKQT-Quarry Bayin Hong Kong */
+	prcopt.rb[0] = -2421567.885;			// base position for relative mode {x,y,z} (ecef) (m)
+	prcopt.rb[1] = 5384910.564;			// base position for relative mode {x,y,z} (ecef) (m)
+	prcopt.rb[2] = 2404264.393;			// base position for relative mode {x,y,z} (ecef) (m)
 	/* set output files */
 	strcpy(outfile, strdup(out_folder.c_str()));
 

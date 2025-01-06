@@ -45,6 +45,7 @@
 #include <pthread.h>
 
 #endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -118,7 +119,6 @@ extern "C" {
 #define ENACMP      1                   /* Weisong: enable BeiDou System */
 // #define ENAGLO      1                   /* Weisong: enable BeiDou System */
 
-
 #define RTK_FGO 0
 
 #if RTK_FGO
@@ -136,16 +136,28 @@ extern "C" {
 
 #else
 
-/** TST data, evaluation for GPS solutions (dynamic, loop) **/
-#define ref_lon    114.179000972         /* Weisong: reference longitude */
-#define ref_lat    22.3011535667        /* Weisong: reference latitude */
-#define ref_alt    6.42821512092                /* Weisong: reference altitude */
-#define station_x     -2414266.9200       /* Weisong: pose x of base station */
-#define station_y     5386768.9870        /* Weisong: pose y of base station */
-#define station_z     2407460.0310        /* Weisong: pose z of station */
-#define start_gps_sec 46701
-#define end_gps_sec 47185
+// /** TST data, evaluation for GPS solutions (dynamic, loop) **/
+// #define ref_lon    114.179000972         /* Weisong: reference longitude */
+// #define ref_lat    22.3011535667        /* Weisong: reference latitude */
+// #define ref_alt    6.42821512092                /* Weisong: reference altitude */
+// #define station_x     -2414266.9200       /* Weisong: pose x of base station */
+// #define station_y     5386768.9870        /* Weisong: pose y of base station */
+// #define station_z     2407460.0310        /* Weisong: pose z of station */
+// #define start_gps_sec 46701
+// #define end_gps_sec 47185
 
+
+// TST data, evaluation for GPS solutions (dynamic, loop)
+#define ref_lon    114.190305193         /* Yixin: reference longitude */
+#define ref_lat    22.301575393        /* Yixin: reference latitude */
+#define ref_alt    5.4704              /* Yixin: reference altitude */
+
+#define station_x     -2421567.8850       /* Yixin: pose x of base station */
+#define station_y     5384910.5640        /* Yixin: pose y of base station */
+#define station_z     2404264.3930        /* Yixin: pose z of station */
+
+#define start_gps_sec 453618 /* Yixin: Time of Whampoa 20210521 6:00:00 */
+#define end_gps_sec 457218  /*Yixin: Time of Whampoa 20210521 7:00:00 */
 
 #endif
 
@@ -156,6 +168,7 @@ extern "C" {
 #ifndef NFREQ
 #define NFREQ       3                   /* number of carrier frequencies */
 #endif
+
 #define NFREQGLO    2                   /* number of carrier frequencies of GLONASS */
 
 #ifndef NEXOBS

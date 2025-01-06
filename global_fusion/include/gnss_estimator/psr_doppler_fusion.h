@@ -472,7 +472,7 @@ public:
             pose_stamped.pose.position.y = FGOENU(1);
             pose_stamped.pose.position.z = 10;
             fgo_path.poses.push_back(pose_stamped);
-            // std::cout << "pose_stamped- FGO-> "<< std::endl<< pose_stamped;
+            std::cout << "pose_stamped- FGO-> "<< std::endl<< pose_stamped;
         }
               
         return fgo_path;

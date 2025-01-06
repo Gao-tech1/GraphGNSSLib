@@ -41,7 +41,7 @@ Visualization Manager:
       Enabled: true
       Frame Convention: XYZ -> ENU
       Name: AerialMapDisplay
-      Object URI: https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png
+      Object URI: https://tile.openstreetmap.org/{z}/{x}/{y}.png
       Topic: /gps/fix
       Value: true
       Zoom: 18

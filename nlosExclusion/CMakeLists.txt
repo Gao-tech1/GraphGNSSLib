@@ -44,6 +44,10 @@ include_directories(include ${PCL_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS} ${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
+catkin_install_python(PROGRAMS
+  src/LEO_gnss_raw_publisher.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
