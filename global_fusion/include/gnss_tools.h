@@ -154,6 +154,19 @@ int getGPSCnt(nlosExclusion::GNSS_Raw_Array GNSS_data)
   return cnt;
 }
 
+int getStarlinkCnt(nlosExclusion::GNSS_Raw_Array GNSS_data)
+{
+  int cnt = 0; 
+  for(int i =0; i < GNSS_data.GNSS_Raws.size(); i++)
+  {
+    if(PRNisStarlink(GNSS_data.GNSS_Raws[i].prn_satellites_index))
+    {
+      cnt++;
+    }
+  }
+  return cnt;
+}
+
 bool validateSV(int gpsCnt, int BeidouCnt)
 {
   if((gpsCnt >= minGPSCnt)&&(BeidouCnt >= minBeidouCnt))
@@ -605,7 +618,7 @@ Eigen::MatrixXd enu2ecef(Eigen::MatrixXd originllh, Eigen::MatrixXd enu) // tran
       weight_matrix.setIdentity();
     }
 
-    // std::cout << " weight_matrix-> " << weight_matrix<< std::endl;    
+     std::cout << " weight_matrix-> " << weight_matrix<< std::endl;    
 
     /**after read the obs file, one measure is not right**/
     int validNumMeasure=0;
@@ -622,10 +635,10 @@ Eigen::MatrixXd enu2ecef(Eigen::MatrixXd originllh, Eigen::MatrixXd enu) // tran
     Eigen::MatrixXd validMeasurement; // for WLS 
     validMeasurement.resize(validNumMeasure,eAllMeasurement.cols());
     for (int idx = 0; idx < eAllMeasurement.rows(); idx++){
-      for (int jdx = 0; jdx < eAllSVPositions.rows(); jdx++){
+       for (int jdx = 0; jdx < eAllSVPositions.rows(); jdx++){
         if (int(eAllMeasurement(idx, 0)) == int(eAllSVPositions(jdx, 0))){
           for (int kdx = 0; kdx < eAllMeasurement.cols(); kdx++){
-            // std::cout<<"satellite prn -> "<<eAllMeasurement(idx, 0)<<"\n"<<std::endl;
+             //std::cout<<"satellite prn -> "<<eAllMeasurement(idx, 0)<<"\n"<<std::endl;
             validMeasurement(idx, kdx) = eAllMeasurement(idx, kdx);
             
           }
@@ -680,7 +693,7 @@ Eigen::MatrixXd enu2ecef(Eigen::MatrixXd originllh, Eigen::MatrixXd enu) // tran
 
       Eigen::MatrixXd eDeltaPos;
       eDeltaPos.resize(eWLSSolution.rows(), 1);
-
+      std::cout << "iNumSV:=" << iNumSV << std::endl;
       for (int idx = 0; idx < iNumSV; idx++){
 
         int prn = int(validMeasurement(idx, 0));
@@ -737,6 +750,9 @@ Eigen::MatrixXd enu2ecef(Eigen::MatrixXd originllh, Eigen::MatrixXd enu) // tran
 
       // Least Square Estimation 
       // eDeltaPos = (eH_Matrix.transpose() * weight_matrix * eH_Matrix).ldlt().solve(eH_Matrix.transpose() * weight_matrix *  eDeltaPr);
+      // std::cout << "eH_Matrix: rows = " << eH_Matrix.rows() << ", cols = " << eH_Matrix.cols() << std::endl;
+      // std::cout << "weight_matrix: rows = " << weight_matrix.rows() << ", cols = " << weight_matrix.cols() << std::endl;
+      // std::cout << "eDeltaPr: rows = " << eDeltaPr.rows() << ", cols = " << eDeltaPr.cols() << std::endl; 
       eDeltaPos = (eH_Matrix.transpose() * weight_matrix * eH_Matrix).inverse() * eH_Matrix.transpose() * weight_matrix * eDeltaPr;
       //eDeltaPos = eH_Matrix.householderQr().solve(eDeltaPr);
 
@@ -869,7 +885,14 @@ Eigen::MatrixXd enu2ecef(Eigen::MatrixXd originllh, Eigen::MatrixXd enu) // tran
       return false;
     }
   }
-
+  bool PRNisStarlink(int prn)
+  {
+    if (prn >= 1000)
+      return true;
+    else{
+      return false;
+    }
+  }
 
 
   /**

@@ -82,6 +82,7 @@ class gnssSinglePointPositioning
 
     // ros subscriber
     ros::Subscriber gnss_raw_sub;
+    ros::Subscriber leo_raw_sub;//add by Yixin
     ros::Publisher pub_WLS, pub_FGO;
     std::queue<nlosExclusion::GNSS_Raw_ArrayConstPtr> gnss_raw_buf;
     std::map<double, nlosExclusion::GNSS_Raw_Array> gnss_raw_map;
@@ -209,7 +210,7 @@ public:
   gnssSinglePointPositioning()
   {
       gnss_raw_sub = nh.subscribe("/gnss_preprocessor_node/GNSSPsrCarRov1", 500, &gnssSinglePointPositioning::gnss_raw_msg_callback, this); // call callback for gnss raw msg
-
+      leo_raw_sub = nh.subscribe("/gnss_preprocessor_node/LEOPsrCarRov1", 500, &gnssSinglePointPositioning::gnss_raw_msg_callback, this); // call callback for leo raw msg add by Yixin
       optimizationThread = std::thread(&gnssSinglePointPositioning::solvePptimization, this);
 
       pub_WLS = nh.advertise<nav_msgs::Odometry>("WLS_spp", 100); // 
@@ -239,6 +240,13 @@ public:
             hasNewData = true;
             gnss_raw_buf.push(msg); 
             gnss_raw_map[gnss_frame] = *msg;
+            // Eigen::MatrixXd positions = m_GNSS_Tools.getAllPositions(*msg);
+            // Eigen::MatrixXd measurements = m_GNSS_Tools.getAllMeasurements(*msg);
+
+            // print positions & measurements' cols and rows no. add by Yixin
+            // std::cout << "positions: rows = " << positions.rows() << ", cols = " << positions.cols() << std::endl;
+            // std::cout << "measurements: rows = " << measurements.rows() << ", cols = " << measurements.cols() << std::endl;
+            
             Eigen::MatrixXd eWLSSolutionECEF = m_GNSS_Tools.WeightedLeastSquare(
                                             m_GNSS_Tools.getAllPositions(*msg),
                                             m_GNSS_Tools.getAllMeasurements(*msg),
@@ -318,6 +326,7 @@ public:
                     nlosExclusion::GNSS_Raw_Array gnss_data = (iter_pr->second);
                     MatrixXd weight_matrix; //goGPS weighting
                     weight_matrix = m_GNSS_Tools.cofactorMatrixCal_WLS(gnss_data, "WLS"); //goGPS
+                    std::cout << "weight_matrix: rows = " << weight_matrix.rows() << ", cols = " << weight_matrix.cols() << std::endl;//add by Yixin
                     int sv_cnt = gnss_data.GNSS_Raws.size();
                     // state_array[m] = new double[5]; //
                     // double a[5] = {1,2,3,4,5};
