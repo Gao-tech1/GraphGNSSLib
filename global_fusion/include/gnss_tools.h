@@ -618,7 +618,7 @@ Eigen::MatrixXd enu2ecef(Eigen::MatrixXd originllh, Eigen::MatrixXd enu) // tran
       weight_matrix.setIdentity();
     }
 
-     std::cout << " weight_matrix-> " << weight_matrix<< std::endl;    
+     //std::cout << " weight_matrix-> " << weight_matrix<< std::endl;    
 
     /**after read the obs file, one measure is not right**/
     int validNumMeasure=0;
@@ -693,7 +693,7 @@ Eigen::MatrixXd enu2ecef(Eigen::MatrixXd originllh, Eigen::MatrixXd enu) // tran
 
       Eigen::MatrixXd eDeltaPos;
       eDeltaPos.resize(eWLSSolution.rows(), 1);
-      std::cout << "iNumSV:=" << iNumSV << std::endl;
+      //std::cout << "iNumSV:=" << iNumSV << std::endl;
       for (int idx = 0; idx < iNumSV; idx++){
 
         int prn = int(validMeasurement(idx, 0));
