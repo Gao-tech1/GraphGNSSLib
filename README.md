@@ -49,6 +49,7 @@ sudo apt-get install libeigen3-dev
 # make Ceres-solver
 mkdir ceres-bin
 cd ceres-bin
+cd ceres-solver
 cmake ../ceres-solver
 sudo make -j4
 sudo make test
